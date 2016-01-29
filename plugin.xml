@@ -81,6 +81,8 @@
         <source-file src="src/android/com/raccoonfink/CordovaHTTP/CordovaHttpHead.java" target-dir="src/com/raccoonfink/CordovaHTTP" />
         <source-file src="src/android/com/raccoonfink/CordovaHTTP/CordovaHttpGet.java" target-dir="src/com/raccoonfink/CordovaHTTP" />
         <source-file src="src/android/com/raccoonfink/CordovaHTTP/CordovaHttpPost.java" target-dir="src/com/raccoonfink/CordovaHTTP" />
+        <source-file src="src/android/com/raccoonfink/CordovaHTTP/CordovaHttpPostJson.java" target-dir="src/com/raccoonfink/CordovaHTTP" />
+        <source-file src="src/android/com/raccoonfink/CordovaHTTP/CordovaHttpPutJson.java" target-dir="src/com/raccoonfink/CordovaHTTP" />
         <source-file src="src/android/com/raccoonfink/CordovaHTTP/CordovaHttpPut.java" target-dir="src/com/raccoonfink/CordovaHTTP" />
         <source-file src="src/android/com/raccoonfink/CordovaHTTP/CordovaHttpDelete.java" target-dir="src/com/raccoonfink/CordovaHTTP" />
         <source-file src="src/android/com/raccoonfink/CordovaHTTP/CordovaHttpUpload.java" target-dir="src/com/raccoonfink/CordovaHTTP" />

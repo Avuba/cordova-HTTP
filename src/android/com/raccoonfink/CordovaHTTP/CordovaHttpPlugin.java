@@ -86,7 +86,22 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             HashMap<String, String> headersMap = this.addToMap(this.globalHeaders, headers);
             CordovaHttpPost post = new CordovaHttpPost(urlString, paramsMap, headersMap, callbackContext);
             cordova.getThreadPool().execute(post);
-        } else if (action.equals("put")) {
+        } else if (action.equals("postJson")) {
+            String urlString = args.getString(0);
+            JSONObject jsonObj = args.getJSONObject(1);
+            JSONObject headers = args.getJSONObject(2);
+            HashMap<String, String> headersMap = this.addToMap(this.globalHeaders, headers);
+            CordovaHttpPostJson postJson = new CordovaHttpPostJson(urlString, jsonObj, headersMap, callbackContext);
+            cordova.getThreadPool().execute(postJson);
+        } else if (action.equals("putJson")) {
+            String urlString = args.getString(0);
+            JSONObject jsonObj = args.getJSONObject(1);
+            JSONObject headers = args.getJSONObject(2);
+            HashMap<String, String> headersMap = this.addToMap(this.globalHeaders, headers);
+            CordovaHttpPostJson putJson = new CordovaHttpPutJson(urlString, jsonObj, headersMap, callbackContext);
+            cordova.getThreadPool().execute(putJson);
+        }
+        else if (action.equals("put")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
