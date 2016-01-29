@@ -1,7 +1,8 @@
 /**
  * A HTTP plugin for Cordova / Phonegap
  */
-package com.synconset;
+
+package com.raccoonfink.CordovaHTTP;
 
 import java.net.UnknownHostException;
 import java.util.Map;
