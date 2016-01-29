@@ -14,8 +14,8 @@ import javax.net.ssl.SSLHandshakeException;
 
 import android.util.Log;
 
-import com.github.kevinsawicki.http.HttpRequest;
-import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
+import com.raccoonfink.CordovaHTTP.HttpRequest;
+import com.raccoonfink.CordovaHTTP.HttpRequest.HttpRequestException;
 
 public class CordovaHttpPutJson extends CordovaHttp implements Runnable {
 
