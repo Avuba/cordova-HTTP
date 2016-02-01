@@ -175,11 +175,23 @@
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-      NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+       NSString *errorString =(NSString *) error;
+       NSError *jsonError;
+       NSData *objectData = [errorString dataUsingEncoding:NSUTF8StringEncoding];
+       NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&jsonError];
+
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-      [dictionary setObject:error forKey:@"error"];
+
+       if (json != nil) {
+           [dictionary setObject:json forKey:@"data"];
+       }
+
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
    }];
 }
 
@@ -211,11 +223,23 @@
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-      NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+       NSString *errorString =(NSString *) error;
+       NSError *jsonError;
+       NSData *objectData = [errorString dataUsingEncoding:NSUTF8StringEncoding];
+       NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&jsonError];
+
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-      [dictionary setObject:error forKey:@"error"];
+
+       if (json != nil) {
+           [dictionary setObject:json forKey:@"data"];
+       }
+
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
    }];
 }
 
@@ -272,11 +296,23 @@
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-      NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+       NSString *errorString =(NSString *) error;
+       NSError *jsonError;
+       NSData *objectData = [errorString dataUsingEncoding:NSUTF8StringEncoding];
+       NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&jsonError];
+
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-      [dictionary setObject:error forKey:@"error"];
+
+       if (json != nil) {
+           [dictionary setObject:json forKey:@"data"];
+       }
+
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
    }];
 }
 
