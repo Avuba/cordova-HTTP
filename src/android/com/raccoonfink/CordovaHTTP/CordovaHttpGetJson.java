@@ -39,6 +39,10 @@ public class CordovaHttpGetJson extends CordovaHttp implements Runnable {
 
             if (code >= 200 && code < 300) {
                 if (body instanceof String) {
+                  if (body.equals("null") || body.equals("") ) {
+                    body = "{}";
+                  }
+
                   response.put("data", new JSONObject(body));
                 }
                 else {
