@@ -1,36 +1,29 @@
 /**
  * A HTTP plugin for Cordova / Phonegap
  */
+
 package com.raccoonfink.CordovaHTTP;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.Map;
-import java.net.SocketTimeoutException;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.HostnameVerifier;
-
-import javax.net.ssl.SSLHandshakeException;
 
 import org.apache.cordova.CallbackContext;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.net.ssl.SSLHandshakeException;
+
 import android.util.Log;
 
 import com.raccoonfink.CordovaHTTP.HttpRequest;
 import com.raccoonfink.CordovaHTTP.HttpRequest.HttpRequestException;
- 
-public class CordovaHttpGet extends CordovaHttp implements Runnable {
-    public CordovaHttpGet(String urlString, Map<?, ?> params, Map<String, String> headers, CallbackContext callbackContext) {
-        super(urlString, params, headers, callbackContext);
+
+public class CordovaHttpGetJson extends CordovaHttp implements Runnable {
+
+    public CordovaHttpGetJson(String urlString, Map<?, ?> params, Map<String, String> headers, CallbackContext callbackContext) {
+        super(urlString, jsonObj, headers, callbackContext);
     }
-    
+
     @Override
     public void run() {
         try {
@@ -45,21 +38,25 @@ public class CordovaHttpGet extends CordovaHttp implements Runnable {
             response.put("status", code);
 
             if (code >= 200 && code < 300) {
-                response.put("data", body);
+                if (body instanceof String) {
+                  response.put("data", body);
+                }
+                else {
+                  response.put("data", new JSONObject(body));
+                }
+
                 this.getCallbackContext().success(response);
             } else {
-                response.put("error", body);
+                response.put("error", new JSONObject(body));
                 this.getCallbackContext().error(response);
             }
         } catch (JSONException e) {
             this.respondWithError("There was an error generating the response");
-        } catch (HttpRequestException e) {
+        }  catch (HttpRequestException e) {
             if (e.getCause() instanceof UnknownHostException) {
                 this.respondWithError(0, "The host could not be resolved");
             } else if (e.getCause() instanceof SSLHandshakeException) {
                 this.respondWithError("SSL handshake failed");
-            } else if (e.getCause() instanceof SocketTimeoutException) {
-                this.respondWithError("Timeout");
             } else {
                 this.respondWithError("There was an error with the request");
             }
