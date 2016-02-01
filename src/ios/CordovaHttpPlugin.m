@@ -159,15 +159,27 @@
    CordovaHttpPlugin* __weak weakSelf = self;
    manager.responseSerializer = [TextResponseSerializer serializer];
    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+      NSError *jsonError;
+      NSData *objectData = [responseObject dataUsingEncoding:NSUTF8StringEncoding];
+      NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                           options:NSJSONReadingMutableContainers
+                                                             error:&jsonError];
+
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-      [dictionary setObject:responseObject forKey:@"data"];
+      [dictionary setObject:json forKey:@"data"];
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      NSError *jsonError;
+      NSData *objectData = [error dataUsingEncoding:NSUTF8StringEncoding];
+      NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                           options:NSJSONReadingMutableContainers
+                                                             error:&jsonError];
+
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-      [dictionary setObject:error forKey:@"error"];
+      [dictionary setObject:json forKey:@"error"];
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
    }];
@@ -185,15 +197,27 @@
    CordovaHttpPlugin* __weak weakSelf = self;
    manager.responseSerializer = [TextResponseSerializer serializer];
    [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+      NSError *jsonError;
+      NSData *objectData = [responseObject dataUsingEncoding:NSUTF8StringEncoding];
+      NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                           options:NSJSONReadingMutableContainers
+                                                             error:&jsonError];
+
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-      [dictionary setObject:responseObject forKey:@"data"];
+      [dictionary setObject:json forKey:@"data"];
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      NSError *jsonError;
+      NSData *objectData = [error dataUsingEncoding:NSUTF8StringEncoding];
+      NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                           options:NSJSONReadingMutableContainers
+                                                             error:&jsonError];
+
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-      [dictionary setObject:error forKey:@"error"];
+      [dictionary setObject:json forKey:@"error"];
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
    }];
@@ -236,15 +260,27 @@
    CordovaHttpPlugin* __weak weakSelf = self;
    manager.responseSerializer = [TextResponseSerializer serializer];
    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+      NSError *jsonError;
+      NSData *objectData = [responseObject dataUsingEncoding:NSUTF8StringEncoding];
+      NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                           options:NSJSONReadingMutableContainers
+                                                             error:&jsonError];
+
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-      [dictionary setObject:responseObject forKey:@"data"];
+      [dictionary setObject:json forKey:@"data"];
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      NSError *jsonError;
+      NSData *objectData = [error dataUsingEncoding:NSUTF8StringEncoding];
+      NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectData
+                                                           options:NSJSONReadingMutableContainers
+                                                             error:&jsonError];
+
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
-      [dictionary setObject:error forKey:@"error"];
+      [dictionary setObject:json forKey:@"error"];
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
    }];
