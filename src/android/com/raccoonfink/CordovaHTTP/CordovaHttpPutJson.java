@@ -39,10 +39,10 @@ public class CordovaHttpPutJson extends CordovaHttp implements Runnable {
             response.put("status", code);
             if (code >= 200 && code < 300) {
                 if (body instanceof String) {
-                  if (body.equals("null") || body.equals("") ) {
+                  if (body.equals("null") || body.equals("") || body.equals(" ") ) {
                     body = "{}";
                   }
-                  
+
                   response.put("data", new JSONObject(body));
                 }
                 else {
