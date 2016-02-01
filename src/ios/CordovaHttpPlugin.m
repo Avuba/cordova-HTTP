@@ -186,7 +186,7 @@
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
 
        if (json != nil) {
-           [dictionary setObject:json forKey:@"data"];
+           [dictionary setObject:json forKey:@"error"];
        }
 
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
@@ -234,7 +234,7 @@
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
 
        if (json != nil) {
-           [dictionary setObject:json forKey:@"data"];
+           [dictionary setObject:json forKey:@"error"];
        }
 
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
@@ -307,7 +307,7 @@
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
 
        if (json != nil) {
-           [dictionary setObject:json forKey:@"data"];
+           [dictionary setObject:json forKey:@"error"];
        }
 
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:dictionary];
