@@ -21,7 +21,7 @@ import com.raccoonfink.CordovaHTTP.HttpRequest.HttpRequestException;
 public class CordovaHttpGetJson extends CordovaHttp implements Runnable {
 
     public CordovaHttpGetJson(String urlString, Map<?, ?> params, Map<String, String> headers, CallbackContext callbackContext) {
-        super(urlString, jsonObj, headers, callbackContext);
+        super(urlString, params, headers, callbackContext);
     }
 
     @Override
