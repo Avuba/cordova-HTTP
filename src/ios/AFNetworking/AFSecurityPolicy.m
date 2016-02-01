@@ -168,6 +168,13 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
             [certificates addObject:certificateData];
         }
 
+        // also add certs from www/certificates
+        paths = [bundle pathsForResourcesOfType:@"cer" inDirectory:@"www/certificates"];
+        for (NSString *path in paths) {
+            NSData *certificateData = [NSData dataWithContentsOfFile:path];
+            [certificates addObject:certificateData];
+        }
+
         _defaultPinnedCertificates = [[NSArray alloc] initWithArray:certificates];
     });
 
