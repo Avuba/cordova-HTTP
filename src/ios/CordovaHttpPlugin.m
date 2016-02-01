@@ -127,7 +127,7 @@
    manager.requestSerializer = [AFJSONRequestSerializer serializer];
    manager.responseSerializer = [AFJSONResponseSerializer serializer];
 
-   [self setRequestHeaders: headers forManager:manager];
+   [self setRequestHeaders: headers];
 
    //NSLog(@"posting parameters: %@", parameters);
    CordovaHttpPlugin* __weak weakSelf = self;
@@ -146,7 +146,6 @@
    }];
   [NSTimer scheduledTimerWithTimeInterval:requestSerializer.timeoutInterval target:weakSelf selector:@selector(checkRequestTimeout:) userInfo:op repeats:false];
 }
-
 
 - (void)postJson:(CDVInvokedUrlCommand*)command {
    HttpManager *manager = [HttpManager sharedClient];
